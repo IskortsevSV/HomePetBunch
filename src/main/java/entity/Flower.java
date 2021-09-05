@@ -1,8 +1,6 @@
 package entity;
 
-/**
- * Created by Asus on 06.02.2018.
- */
+
 public class Flower {
 
     private int id;
@@ -94,4 +92,10 @@ public class Flower {
         return result;
     }
 
+    @Override
+    public String toString() {
+        return "Flower{" +
+                "name='" + name + '\'' +
+                '}';
+    }
 }

@@ -7,3 +7,4 @@ log
 
 
 /src/main/java/entity/Main.java
+/src/main/resources/db.properties

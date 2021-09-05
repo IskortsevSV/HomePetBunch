@@ -3,9 +3,7 @@ package entity;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Asus on 06.02.2018.
- */
+
 public class User {
 
     private int id;

@@ -1,21 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Asus
-  Date: 06.02.2018
-  Time: 14:06
-  To change this template use File | Settings | File Templates.
-
-  При использовании области действия page объект доступен только на той странице, где он определен.
-  На включаемых (jsp:include) и переадресуемых (jsp:forward) страницах данный объект уже не доступен.
-
-  Таким образом, чтобы бин был доступен всем JSP страницам, необходимо указать область видимости application или session,
-  в зависимости от того требуется ли доступ к объекту всем пользователям или только текущему. Для указания требуемой области действия при определении объекта на JSP странице используется атрибут scope тега jsp:useBean:
-
-  <jsp:useBean id="myBean" class="ru.javacore.MyBean" scope="session"/>
-  Отметит, что если не указывать атрибут scope, то по умолчанию задается область видимости страницы page
-
-
---%>
 <%@ taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -24,10 +6,7 @@
 </head>
 <body>
    <jstl:choose>
-    <jstl:when test="${not empty sessionScope.user}"> <%--ключ user--%>
-       <%-- В случае области действия сессии session, объект будет помещен в сеанс пользователя.
-        Бин будет доступен на всех JSP страницах и будет существовать пока существует
-        сессия пользователя, или он не будет из нее принудительно удален.--%>
+    <jstl:when test="${not empty sessionScope.user}">
         <p>${sessionScope.user.name}</p>
         <p><a href="controller?action=bunches">My bunch</a></p>
         <p><a href="controller?action=logout">Logout</a></p>
@@ -38,14 +17,10 @@
      </jstl:otherwise>
    </jstl:choose>
 
-
-
   <%-- Перебераем все свободные цветы--%>
    <jstl:choose>
        <jstl:when test="${empty sessionScope.user}">
-         <%--  При использовании области действия запроса request объект будет доступен на текущей JSP странице,
-           странице пересылки (при использовании jsp:forward) или на включаемой странице (при использовании jsp:include).
-          --%> <jstl:forEach items="${requestScope.flowers}" var="flower">
+          <jstl:forEach items="${requestScope.flowers}" var="flower">
                <br/>
                <p><img src="${flower.imagePath}" alt="flower" /></p>
                <p>Name: ${flower.name}</p>
@@ -102,10 +77,6 @@
 
        </jstl:otherwise>
    </jstl:choose>
-
-
-
-    
 
 </body>
 </html>

@@ -1,16 +1,19 @@
 package command;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 
 
 public class CommandFactory {
-  //  private static final Logger LOG = LoggerFactory.getLogger(CommandFactory.class);
+    private static final Logger LOG = LoggerFactory.getLogger(CommandFactory.class);
 
-  //  private static CommandFactory factory = new CommandFactory();
-      private static CommandFactory factory;
+    private static CommandFactory factory = new CommandFactory();
+
 
     private Map<String, Command> comands = new HashMap<String, Command>();
 
@@ -39,8 +42,7 @@ public class CommandFactory {
     }
 
     public Command getCommand(HttpServletRequest request) {
-        System.out.println("CommandFactory getCommand()");
-      //  LOG.info("Command getCommand");
+        LOG.info("Command getCommand");
         String action = request.getParameter("action");
         Command command = comands.get(action);
         return command;

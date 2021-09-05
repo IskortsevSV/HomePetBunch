@@ -33,7 +33,7 @@ public class Controller extends HttpServlet {
         CommandFactory commandFactory = CommandFactory.commandFactory();
         Command command = commandFactory.getCommand(req);
         String page = command.execute(req);
-        System.out.println(page);
+        LOG.info("Controller page: {}",page);
         RequestDispatcher dispatcher = req.getRequestDispatcher(page);
         dispatcher.forward(req, resp);
 

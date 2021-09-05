@@ -1,26 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration scan="true" scanPeriod="30 seconds">
 
-    <!-- To enable JMX Management -->
-    <jmxConfigurator/>
+    <property name="FILE_LOG_PATTERN" value="%date %-5level %logger{0} [%file:%line] %msg%n"/>
 
     <appender name="file" class="ch.qos.logback.core.FileAppender">
-        <file>log/bunchLog.log</file>
+        <file>${HOMEPET_ROOT}/log/bunchLog.log</file>
 
         <encoder>
             <charset>UTF-8</charset>
-            <pattern>%date %-5level %logger{0} [%file:%line] %msg%n</pattern>
+            <pattern>${FILE_LOG_PATTERN}</pattern>
         </encoder>
     </appender>
 
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <charset>UTF-8</charset>
-            <pattern>%-5level %logger{0} [%file:%line] %msg%n</pattern>
+            <pattern>${FILE_LOG_PATTERN}</pattern>
         </encoder>
     </appender>
 
-    <logger name="ru.javawebinar.topjava" level="debug"/>
+  <!--  <logger level="DEBUG">
+        <appender-ref ref="file"/>
+    </logger>-->
 
     <root level="info">
         <appender-ref ref="file"/>

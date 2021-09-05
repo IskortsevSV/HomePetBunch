@@ -3,6 +3,8 @@ package command;
 import dao.DAOFactory;
 import dao.UserDAO;
 import entity.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -10,11 +12,10 @@ import java.util.Set;
 
 
 public class RegisterCommand implements Command {
- //   private static final Logger LOG = LoggerFactory.getLogger(RegisterCommand.class);
+    private static final Logger LOG = LoggerFactory.getLogger(RegisterCommand.class);
 
     public String execute(HttpServletRequest request) {
-        System.out.println("RegisterCommand execute()");
- //       LOG.info("RegisterCommand execute");
+         LOG.info("RegisterCommand execute");
         String name = request.getParameter("name");
         String password = request.getParameter("password");
         boolean admin = Boolean.parseBoolean(request.getParameter("admin"));

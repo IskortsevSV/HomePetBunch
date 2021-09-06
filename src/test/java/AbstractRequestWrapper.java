@@ -9,9 +9,6 @@ import java.util.Enumeration;
 import java.util.Locale;
 import java.util.Map;
 
-/**
- * Created by Asus on 18.06.2018.
- */
 public abstract class AbstractRequestWrapper implements HttpServletRequest {
 
 

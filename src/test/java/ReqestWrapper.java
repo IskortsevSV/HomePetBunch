@@ -6,9 +6,7 @@ import java.io.UnsupportedEncodingException;
 import java.security.Principal;
 import java.util.*;
 
-/**
- * Created by Asus on 24.04.2018.
- */
+
 public class ReqestWrapper extends AbstractRequestWrapper {
 
     private Map<String, String > params = new HashMap<String, String>();

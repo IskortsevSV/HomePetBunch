@@ -5,9 +5,7 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by Asus on 24.04.2018.
- */
+
 public class SessionWrapper extends AbstractSessionWrapper {
 
     private Map<String, Object> values = new HashMap<String, Object>();

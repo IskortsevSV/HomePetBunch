@@ -3,9 +3,7 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionContext;
 import java.util.Enumeration;
 
-/**
- * Created by Asus on 18.06.2018.
- */
+
 public abstract class AbstractSessionWrapper implements HttpSession {
 
     public long getCreationTime() {

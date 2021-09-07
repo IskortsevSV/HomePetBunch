@@ -38,7 +38,8 @@ public class CommandFactory {
         comands.put("add_flower", new AddFlowerToBunchCommand());
         comands.put("bunch_flowers", new BunchFlowersCommand());
         comands.put("remove_flower", new RemoveFlowerCommand());
-        comands.put("add_new_flower_to_exists", new AddNewFlowerToExists());
+        comands.put("add_new_flower_to_exists", new AddNewFlowerToExistsCommand());
+        comands.put("remove_bunch", new RemoveBunchCommand());
     }
 
     public Command getCommand(HttpServletRequest request) {

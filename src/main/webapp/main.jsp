@@ -64,6 +64,14 @@
 
                        </form>
 
+                       <form method="post" action="controller?action=remove_bunch">
+
+                           <input type="hidden" name="bunch_id" value="${bunch.id}" />
+
+                           <input type="submit" value="Remove bunch" />
+
+                       </form>
+
 
                    </jstl:forEach>
 

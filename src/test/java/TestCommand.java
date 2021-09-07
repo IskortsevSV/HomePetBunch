@@ -10,7 +10,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Set;
@@ -24,23 +23,22 @@ public class TestCommand {
 
     @Before
     public void init() {
-       wrapper = new ReqestWrapper();
+        wrapper = new ReqestWrapper();
     }
-
 
 
     @Test
     public void testAddNewFlowerToExists() {
         User user = new User();
         user.setAdmin(true);
-        wrapper.getSession().setAttribute("user",user);
+        wrapper.getSession().setAttribute("user", user);
 
-        wrapper.addParam("name","Podsnezhnik");
+        wrapper.addParam("name", "Podsnezhnik");
         wrapper.addParam("price", String.valueOf(25));
         wrapper.addParam("lengthSteack", String.valueOf(6));
         wrapper.addParam("iceLevel", String.valueOf(7));
 
-        Command command = new AddNewFlowerToExists();
+        Command command = new AddNewFlowerToExistsCommand();
         DAOFactory factory = DAOFactory.getInstance();
         FlowerDAO flowerDAO = factory.getFlowerDAO();
         List<Flower> all = flowerDAO.getAll();
@@ -55,7 +53,7 @@ public class TestCommand {
         System.out.println("Old size: " + oldSize);
         System.out.println("New size: " + newSize);
 
-        Assert.assertEquals(oldSize+1, newSize);
+        Assert.assertEquals(oldSize + 1, newSize);
     }
 
     @Test
@@ -77,7 +75,7 @@ public class TestCommand {
 
         System.out.println(page);
 
-        Assert.assertEquals( currentSize + 1, newSize);
+        Assert.assertEquals(currentSize + 1, newSize);
         Assert.assertNotEquals(errorPage, page);
     }
 
@@ -130,7 +128,49 @@ public class TestCommand {
         System.out.println("Old size: " + oldSize);
         System.out.println("New size: " + newSize);
 
-        Assert.assertEquals(oldSize+1, newSize);
+        Assert.assertEquals(oldSize + 1, newSize);
+    }
+
+    @Test
+    public void testRemoveBunch() {
+        Bunch bunch = new Bunch();
+        bunch.setId(66);
+        User user = new User();
+        user.setId(6);
+
+        wrapper.addParam("bunch_id", String.valueOf(bunch.getId()));
+        Command command = new RemoveBunchCommand();
+
+        DAOFactory daoFactory = DAOFactory.getInstance();
+        BunchDAO bunchDAO = daoFactory.getBunchDAO();
+        FlowerDAO flower = daoFactory.getFlowerDAO();
+
+        List<Bunch> allBunches = bunchDAO.getAllBunches(user); // получить кол-во букетов
+        List<Flower> flowerAll = flower.getAll();
+
+        int oldSizeBunch = allBunches.size();
+        int oldSizeFlower = flowerAll.size();
+
+        command.execute(wrapper);
+
+        flowerAll = flower.getAll();
+        allBunches = bunchDAO.getAllBunches(user);
+
+        int newSizeBunch = allBunches.size();
+        int newSizeFlower = flowerAll.size();
+
+        System.out.println("Result Bunch: " + oldSizeBunch + " " + newSizeBunch);
+        System.out.println("Result Flower: " + oldSizeFlower + " " + newSizeFlower);
+
+        Assert.assertNotEquals(oldSizeFlower,newSizeFlower);
+        Assert.assertNotEquals(oldSizeBunch,newSizeBunch);
+
+
+
+
+
+
+
     }
 
 }

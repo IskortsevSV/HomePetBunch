@@ -71,6 +71,7 @@
                <jstl:otherwise>
                    <a href="add_flowers_to_exists.jsp">Add new flower to exists</a>
                    <br>
+                   <br>
                    <a href="controller?action=add_empty_bunch">Add free bunch</a>
                </jstl:otherwise>
            </jstl:choose>

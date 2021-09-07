@@ -8,11 +8,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 
-public class AddNewFlowerToExists implements Command {
-    private static final Logger LOG = LoggerFactory.getLogger(AddNewFlowerToExists.class);
+public class AddNewFlowerToExistsCommand implements Command {
+    private static final Logger LOG = LoggerFactory.getLogger(AddNewFlowerToExistsCommand.class);
 
     public String execute(HttpServletRequest request) {
         LOG.info("AddNewFlowerToExists execute");

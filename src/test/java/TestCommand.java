@@ -1,8 +1,10 @@
 import command.*;
 import dao.BunchDAO;
 import dao.DAOFactory;
+import dao.FlowerDAO;
 import dao.UserDAO;
 import entity.Bunch;
+import entity.Flower;
 import entity.User;
 import org.junit.Assert;
 import org.junit.Before;
@@ -23,6 +25,37 @@ public class TestCommand {
     @Before
     public void init() {
        wrapper = new ReqestWrapper();
+    }
+
+
+
+    @Test
+    public void testAddNewFlowerToExists() {
+        User user = new User();
+        user.setAdmin(true);
+        wrapper.getSession().setAttribute("user",user);
+
+        wrapper.addParam("name","Podsnezhnik");
+        wrapper.addParam("price", String.valueOf(25));
+        wrapper.addParam("lengthSteack", String.valueOf(6));
+        wrapper.addParam("iceLevel", String.valueOf(7));
+
+        Command command = new AddNewFlowerToExists();
+        DAOFactory factory = DAOFactory.getInstance();
+        FlowerDAO flowerDAO = factory.getFlowerDAO();
+        List<Flower> all = flowerDAO.getAll();
+        int oldSize = all.size();
+
+        command.execute(wrapper);
+
+        all = flowerDAO.getAll();
+
+        int newSize = all.size();
+
+        System.out.println("Old size: " + oldSize);
+        System.out.println("New size: " + newSize);
+
+        Assert.assertEquals(oldSize+1, newSize);
     }
 
     @Test
@@ -79,7 +112,7 @@ public class TestCommand {
     @Test
     public void testCreateBunchCommand() {
         User user = new User();
-        user.setId(1);
+        user.setId(6);
         wrapper.getSession().setAttribute("user", user);
 
         Command command = new CreateBunchCommand();

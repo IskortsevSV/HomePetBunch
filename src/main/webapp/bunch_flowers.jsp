@@ -6,8 +6,10 @@
     <title>Title</title>
 </head>
 <body>
+<button onclick="window.location.href = 'controller?action=main';">Back</button>
 
 <jstl:forEach items="${requestScope.flowers}" var="flower">
+
     <br/>
     <p><img src="${flower.imagePath}" alt="flower" /></p>
     <p>${flower.name}</p>

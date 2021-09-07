@@ -234,4 +234,40 @@ public class BunchDAO extends AbstractDAO {
 
     }
 
+    public void removeBunch(Bunch bunch) {
+        LOG.info("Method removeBunch: {}", bunch.getId());
+        Connection connection = null;
+        PreparedStatement statement = null;
+
+        try {
+            connection = getConnection();
+            int result;
+            statement = connection.prepareStatement("UPDATE flowers_exists SET bunch_id = null WHERE bunch_id = ?");
+            statement.setInt(1,bunch.getId());
+            statement.executeUpdate();
+            result = statement.executeUpdate();
+            LOG.info("Method removeBunch update result: {}", result);
+
+            statement = connection.prepareStatement("DELETE FROM user_bunch WHERE bunch_id = ?");
+            statement.setInt(1, bunch.getId());
+
+            result = statement.executeUpdate();
+            LOG.info("Method removeBunch remove result: {}", result);
+
+        } catch (SQLException e) {
+            LOG.error("Method removeFlower: ERROR");
+            e.printStackTrace();
+        } finally {
+            try {
+                if (connection != null && statement != null) {
+                    connection.close();
+                    statement.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
 }

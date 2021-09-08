@@ -27,7 +27,7 @@ public class AuthorizationFilter implements Filter {
             chain.doFilter(request, response);
 
         } else {
-            request.getRequestDispatcher("ex_error.jsp").forward(request, response);
+            request.getRequestDispatcher("ex_error.xhtml").forward(request, response);
         }
 
 
